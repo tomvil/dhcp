@@ -861,11 +861,6 @@ do_relay4(struct interface_info *ip, struct dhcp_packet *packet,
 			 "%s interface.", ip->name);
 		return;
 	}
-	if (ip->address_count < 1 || ip->addresses == NULL) {
-		log_info("Discarding packet received on %s interface that "
-			 "has no IPv4 address assigned.", ip->name);
-		return;
-	}
 
 	/* Find the interface that corresponds to the giaddr
 	   in the packet. */
@@ -2069,8 +2064,6 @@ dhcpv6(struct packet *packet) {
 		return;
 	}
 
-	log_info("Can't process packet from interface '%s'.",
-		 packet->interface->name);
 #endif /* UNIT_TEST */
 }
 #endif /* DHCPv6 */
